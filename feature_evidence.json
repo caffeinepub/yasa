@@ -1,0 +1,287 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-user-authentication-system-using-internet-identity-for-secure-login-and-user-session-management",
+      "featureTitle": "Create user authentication system using Internet Identity for secure login and user session management",
+      "files": [
+        "frontend/src/components/auth/AuthGuard.tsx",
+        "frontend/src/components/auth/LoginButton.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-user-profile-system-with-username-profile-photo-and-bio-information-that-can-be-created-and-edited",
+      "featureTitle": "Implement user profile system with username, profile photo, and bio information that can be created and edited",
+      "files": [
+        "frontend/src/components/profile/EditProfileModal.tsx",
+        "frontend/src/components/profile/ProfilePage.tsx",
+        "frontend/src/components/profile/ProfileSetupModal.tsx",
+        "frontend/src/hooks/useUserProfile.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-text-based-messaging-system-where-authenticated-users-can-send-and-receive-messages-in-real-time-with-other-users",
+      "featureTitle": "Build a text-based messaging system where authenticated users can send and receive messages in real-time with other users",
+      "files": [
+        "frontend/src/components/messages/ConversationView.tsx",
+        "frontend/src/components/messages/MessagesPage.tsx",
+        "frontend/src/hooks/useMessages.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-photo-and-video-post-sharing-system-where-users-can-upload-images-and-videos-with-captions-to-share-with-other-users",
+      "featureTitle": "Create a photo and video post sharing system where users can upload images and videos with captions to share with other users",
+      "files": [
+        "frontend/src/components/posts/CreatePostModal.tsx",
+        "frontend/src/components/posts/PostCard.tsx",
+        "frontend/src/hooks/usePosts.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-stories-feature-where-users-can-post-ephemeral-content-photos-videos-that-automatically-disappears-after-24-hours",
+      "featureTitle": "Implement a Stories feature where users can post ephemeral content (photos/videos) that automatically disappears after 24 hours",
+      "files": [
+        "frontend/src/components/stories/CreateStoryModal.tsx",
+        "frontend/src/components/stories/StoriesBar.tsx",
+        "frontend/src/hooks/useStories.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-content-feed-that-displays-posts-from-all-users-in-reverse-chronological-order-with-infinite-scroll",
+      "featureTitle": "Create a content feed that displays posts from all users in reverse chronological order with infinite scroll",
+      "files": [
+        "frontend/src/components/feed/FeedPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-like-and-comment-functionality-on-posts-where-users-can-like-posts-and-add-text-comments",
+      "featureTitle": "Implement like and comment functionality on posts where users can like posts and add text comments",
+      "files": [
+        "frontend/src/components/posts/CommentsList.tsx",
+        "frontend/src/hooks/usePostInteractions.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-follow-unfollow-system-where-users-can-follow-other-users-and-view-a-following-followers-list",
+      "featureTitle": "Implement a follow/unfollow system where users can follow other users and view a following/followers list",
+      "files": [
+        "frontend/src/components/profile/FollowButton.tsx",
+        "frontend/src/components/profile/FollowersModal.tsx",
+        "frontend/src/components/profile/FollowingModal.tsx",
+        "frontend/src/hooks/useFollow.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-user-search-feature-that-allows-searching-for-other-users-by-username",
+      "featureTitle": "Create a user search feature that allows searching for other users by username",
+      "files": [
+        "frontend/src/components/search/SearchPage.tsx",
+        "frontend/src/hooks/useUserSearch.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-notification-system-that-alerts-users-about-likes-comments-new-followers-and-messages",
+      "featureTitle": "Implement a notification system that alerts users about likes, comments, new followers, and messages",
+      "files": [
+        "frontend/src/components/notifications/NotificationBadge.tsx",
+        "frontend/src/components/notifications/NotificationsPage.tsx",
+        "frontend/src/hooks/useNotifications.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-reporting-system-where-users-can-report-inappropriate-posts-or-users-with-reason-categories",
+      "featureTitle": "Create a reporting system where users can report inappropriate posts or users with reason categories",
+      "files": [
+        "frontend/src/components/admin/ReportsPage.tsx",
+        "frontend/src/components/reports/ReportModal.tsx",
+        "frontend/src/hooks/useReports.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-and-implement-a-modern-mobile-first-ui-with-a-vibrant-gradient-color-scheme-coral-to-purple-rounded-card-components-smooth-animations-and-a-clean-instagram-inspired-layout-with-bottom-navigation",
+      "featureTitle": "Design and implement a modern, mobile-first UI with a vibrant gradient color scheme (coral to purple), rounded card components, smooth animations, and a clean Instagram-inspired layout with bottom navigation",
+      "files": [
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/components/layout/BottomNavigation.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-render-generated-images-for-app-branding-and-ui-elements-from-frontend-public-assets-generated-as-static-assets-throughout-the-application",
+      "featureTitle": "Render generated images for app branding and UI elements from frontend/public/assets/generated as static assets throughout the application",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

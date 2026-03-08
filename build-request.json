@@ -1,0 +1,297 @@
+{
+  "kind": "build_request",
+  "title": "Create social media and communication hub with chat, video calls, and content sharing",
+  "projectName": "Yasa",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create user authentication system using Internet Identity for secure login and user session management",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can register and login using Internet Identity",
+        "User sessions persist across page refreshes",
+        "Authenticated users have unique identities stored in the backend"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement user profile system with username, profile photo, and bio information that can be created and edited",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can create and update their profile with username and bio",
+        "Profile photos can be uploaded and displayed",
+        "Profiles are stored persistently in the backend",
+        "Users can view their own and other users' profiles"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a text-based messaging system where authenticated users can send and receive messages in real-time with other users",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Instant messaging with text, voice memos, and stickers"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can send text messages to other users",
+        "Messages are displayed in chronological order",
+        "Message history persists in the backend",
+        "Users can view their conversation history with other users",
+        "New messages appear without requiring page refresh"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create a photo and video post sharing system where users can upload images and videos with captions to share with other users",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Photo and video sharing with filters, effects, and AR capabilities"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can upload photos and videos from their device",
+        "Posts include caption text and timestamp",
+        "Posts are stored in the backend and associated with the user who created them",
+        "Users can view a feed of posts from all users"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement a Stories feature where users can post ephemeral content (photos/videos) that automatically disappears after 24 hours",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Stories and ephemeral content that disappear after 24 hours"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can create story posts with images and text",
+        "Stories are displayed separately from regular posts",
+        "Stories automatically expire and are removed 24 hours after creation",
+        "Users can view active stories from other users",
+        "Story timestamp shows time remaining before expiration"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create a content feed that displays posts from all users in reverse chronological order with infinite scroll",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "User-generated content feeds, with AI-driven suggestions and content discovery"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Feed displays all user posts sorted by newest first",
+        "Posts show username, profile photo, caption, image/video, and timestamp",
+        "Infinite scroll loads more posts as user scrolls down",
+        "Feed updates when new posts are created"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement like and comment functionality on posts where users can like posts and add text comments",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can like/unlike posts with a heart icon",
+        "Like count is displayed on each post",
+        "Users can add text comments to posts",
+        "Comments display with username and timestamp",
+        "All interactions persist in the backend"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create privacy controls allowing users to set their profile and posts to public or private visibility",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Users can control privacy settings, audience visibility, and post visibility"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users have privacy settings in their profile (public/private)",
+        "Private profiles only show content to approved followers",
+        "Users can set individual post visibility settings",
+        "Privacy settings are enforced by backend queries"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Implement a follow/unfollow system where users can follow other users and view a following/followers list",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can follow and unfollow other users",
+        "Follow relationships are stored in the backend",
+        "Users can view their followers and following lists",
+        "Follower and following counts are displayed on profiles"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Create a user search feature that allows searching for other users by username",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can search for other users by typing username",
+        "Search results display matching usernames with profile photos",
+        "Clicking a result navigates to that user's profile",
+        "Search is performed in the backend"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Implement a notification system that alerts users about likes, comments, new followers, and messages",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Smart notifications and reminders, adjusting to user behavior and preferences"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Notifications are generated for likes, comments, follows, and new messages",
+        "Users can view a list of all notifications",
+        "Unread notification count is displayed",
+        "Notifications can be marked as read",
+        "Notifications persist in the backend"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Create a reporting system where users can report inappropriate posts or users with reason categories",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Reporting and feedback system with AI to improve user experience"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can report posts or profiles with a report button",
+        "Report form includes reason categories (spam, harassment, inappropriate content, etc.)",
+        "Reports are stored in the backend with reporter identity, target, and reason",
+        "Reported content is flagged for review"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Design and implement a modern, mobile-first UI with a vibrant gradient color scheme (coral to purple), rounded card components, smooth animations, and a clean Instagram-inspired layout with bottom navigation",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI uses a coral-to-purple gradient color palette consistently",
+        "Components have rounded corners and subtle shadows for depth",
+        "Smooth transitions and animations enhance user interactions",
+        "Bottom navigation bar provides quick access to main features",
+        "Layout is responsive and mobile-optimized",
+        "Typography is clean and legible with proper hierarchy"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Render generated images for app branding and UI elements from frontend/public/assets/generated as static assets throughout the application",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are loaded from frontend/public/assets/generated",
+        "Images are displayed in appropriate locations (logo in header, placeholders, backgrounds)",
+        "Images maintain proper aspect ratios and responsive sizing",
+        "No backend calls are made to serve these static assets"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not implement real-time WebSocket communication as it is not supported",
+    "Do not integrate third-party AI services like OpenAI or Anthropic",
+    "Do not implement voice calling or video calling as real-time communication is not supported",
+    "Do not integrate with external social media platforms (Instagram, Snapchat) as these APIs are not supported",
+    "Do not implement push notifications as they are not supported",
+    "Do not use external authentication providers; use Internet Identity only",
+    "Do not implement AR filters or effects as these require external libraries not supported",
+    "Do not implement voice memos or audio recording features",
+    "All backend logic must reside in a single Motoko actor file",
+    "Frontend must not modify immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui"
+  ],
+  "nonGoals": [
+    "Real-time WebSocket-based chat or live updates",
+    "Voice calling, video calling, or audio communication",
+    "Integration with third-party social media APIs",
+    "AR filters, face effects, or camera filters",
+    "AI-powered content moderation using external AI services",
+    "AI-generated captions, music suggestions, or automated content creation",
+    "Voice recognition or speech-to-text features",
+    "Push notifications to devices",
+    "Cross-platform mobile app deployment",
+    "SMS or email notifications",
+    "Group video/voice chat capabilities",
+    "Sticker packs or animated emoji features",
+    "Music integration or audio playback",
+    "Advanced photo/video editing tools beyond basic uploads"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Modern gradient app logo with 'Yasa' text in vibrant coral-to-purple gradient colors (logo.dim_256x256.png)",
+      "Abstract wave pattern background in soft coral and purple tones for hero section (hero-background.dim_1920x1080.png)",
+      "Simple user avatar placeholder icon in neutral gray (avatar-placeholder.dim_128x128.png)",
+      "Camera icon for post creation button in white with subtle shadow (camera-icon.dim_64x64.png)",
+      "Heart icon for like button in coral color (heart-icon.dim_48x48.png)",
+      "Chat bubble icon for messaging in purple (chat-icon.dim_48x48.png)"
+    ],
+    "edits": []
+  }
+}

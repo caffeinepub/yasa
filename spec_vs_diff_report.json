@@ -1,0 +1,118 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-22T08:01:37.703Z",
+  "summary": "The implementation covers most of the core requirements but has significant missing functionality. While Internet Identity authentication, user profiles, posts, stories, notifications, follow/unfollow, search, and reporting are implemented, the messaging system is incomplete (only UI scaffolding without backend integration), privacy controls are partially implemented, and real-time updates are not functioning as specified. Several acceptance criteria remain unmet, particularly around messaging, privacy enforcement, and real-time feed updates.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Build a text-based messaging system where authenticated users can send and receive messages in real-time with other users",
+      "reason": "While ConversationView.tsx and MessagesPage.tsx exist with UI components, the diff shows no backend methods for retrieving or sending messages (useGetMessages and useSendMessage hooks are referenced but not shown in the diff). The backend main.mo file is truncated but does not show message-related query/update methods in the visible portion.",
+      "evidence": [
+        "frontend/src/components/messages/ConversationView.tsx",
+        "frontend/src/components/messages/MessagesPage.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "New messages appear without requiring page refresh",
+      "reason": "No polling mechanism, WebSocket alternative, or periodic refresh logic is visible in the messaging components. The constraint explicitly disallows WebSockets, but no alternative real-time update mechanism is implemented.",
+      "evidence": [
+        "frontend/src/components/messages/ConversationView.tsx"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Feed updates when new posts are created",
+      "reason": "The FeedPage.tsx shows static feed loading with infinite scroll, but no mechanism for updating the feed when new posts are created (no polling, no refresh trigger). Feed would require manual page refresh to show new posts.",
+      "evidence": [
+        "frontend/src/components/feed/FeedPage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Private profiles only show content to approved followers",
+      "reason": "While visibility enum and canViewProfile/canViewPost functions exist in backend, the frontend does not show enforcement. ProfilePage.tsx does not conditionally hide content based on privacy settings, and there is no approval/follower request mechanism visible.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/profile/ProfilePage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Users can set individual post visibility settings",
+      "reason": "CreatePostModal.tsx shows visibility selection UI, but there is no evidence of per-post visibility filtering in the feed queries or post retrieval logic. The getPublicPosts method name suggests it only returns public posts, not respecting individual post visibility based on follower relationships.",
+      "evidence": [
+        "frontend/src/components/posts/CreatePostModal.tsx",
+        "frontend/src/components/feed/FeedPage.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Admin reports page with isCallerAdmin() check",
+      "reason": "REQ-12 specifies a reporting system where users can report content, but does not mention admin review functionality or admin role checks. The ReportsPage.tsx implements admin-only access control with isCallerAdmin() method not requested in requirements.",
+      "evidence": [
+        "frontend/src/components/admin/ReportsPage.tsx"
+      ]
+    },
+    {
+      "description": "Message button in user profiles",
+      "reason": "ProfilePage.tsx appears to implement profile viewing and follow functionality, but the requirements do not specify a message user from profile button. REQ-3 describes messaging functionality but not the entry point from profiles.",
+      "evidence": [
+        "frontend/src/components/profile/ProfilePage.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.75,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/admin/ReportsPage.tsx",
+    "frontend/src/components/auth/AuthGuard.tsx",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/feed/FeedPage.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/layout/BottomNavigation.tsx",
+    "frontend/src/components/messages/ConversationView.tsx",
+    "frontend/src/components/messages/MessagesPage.tsx",
+    "frontend/src/components/notifications/NotificationBadge.tsx",
+    "frontend/src/components/notifications/NotificationsPage.tsx",
+    "frontend/src/components/posts/CommentsList.tsx",
+    "frontend/src/components/posts/CreatePostModal.tsx",
+    "frontend/src/components/posts/PostCard.tsx",
+    "frontend/src/components/profile/EditProfileModal.tsx",
+    "frontend/src/components/profile/FollowButton.tsx",
+    "frontend/src/components/profile/FollowersModal.tsx",
+    "frontend/src/components/profile/FollowingModal.tsx",
+    "frontend/src/components/profile/ProfilePage.tsx",
+    "frontend/src/components/profile/ProfileSetupModal.tsx",
+    "frontend/src/components/reports/ReportModal.tsx",
+    "frontend/src/components/search/SearchPage.tsx",
+    "frontend/src/components/stories/CreateStoryModal.tsx",
+    "frontend/src/components/stories/StoriesBar.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useFollow.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useMessages.ts",
+    "frontend/src/hooks/useNotifications.ts",
+    "frontend/src/hooks/usePostInteractions.ts",
+    "frontend/src/hooks/usePosts.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useReports.ts",
+    "frontend/src/hooks/useStories.ts",
+    "frontend/src/hooks/useUserProfile.ts",
+    "frontend/src/hooks/useUserSearch.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/LandingPage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

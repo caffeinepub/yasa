@@ -1,0 +1,370 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Yasa Social Media Hub - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement Internet Identity authentication UI with user session management",
+      "acceptanceCriteria": [
+        "Users can register and login using Internet Identity",
+        "User sessions persist across page refreshes",
+        "Authenticated users have unique identities stored in the backend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Create LoginButton component with Internet Identity integration. Use the authorization component to handle login/logout flow, clear query cache on logout, and display loading states during authentication. Component should trigger profile setup flow after successful login."
+        },
+        {
+          "path": "frontend/src/components/auth/AuthGuard.tsx",
+          "operation": "create",
+          "description": "Create AuthGuard component that wraps protected routes and redirects unauthenticated users to login page. Shows loading state while verifying authentication status."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Create user profile management UI with username, bio, and photo upload",
+      "acceptanceCriteria": [
+        "Users can create and update their profile with username and bio",
+        "Profile photos can be uploaded and displayed",
+        "Profiles are stored persistently in the backend",
+        "Users can view their own and other users' profiles"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Create custom hooks for user profile management including useGetCallerUserProfile (with proper actor dependency handling to prevent modal flash), useSaveCallerUserProfile, and useGetUserProfile. Use the authorization component's getCallerUserProfile and saveCallerUserProfile methods. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/profile/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Create modal component for first-time profile setup that prompts authenticated users without a profile to enter username and bio. Use blob-storage component's ExternalBlob.fromBytes() for profile photo uploads with upload progress tracking. Modal should only appear when isAuthenticated && !profileLoading && isFetched && userProfile === null."
+        },
+        {
+          "path": "frontend/src/components/profile/ProfilePage.tsx",
+          "operation": "create",
+          "description": "Create user profile page displaying username, bio, profile photo (using ExternalBlob.getDirectURL() for photo rendering from frontend/public/assets/generated/avatar-placeholder.dim_128x128.png as fallback), follower/following counts, and user's posts. Include edit profile button for current user."
+        },
+        {
+          "path": "frontend/src/components/profile/EditProfileModal.tsx",
+          "operation": "create",
+          "description": "Create edit profile modal allowing users to update username, bio, and profile photo. Use blob-storage component's ExternalBlob for photo uploads with progress tracking via withUploadProgress(). Include privacy setting toggle for public/private profile visibility."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build text messaging UI for sending and receiving messages between users",
+      "acceptanceCriteria": [
+        "Users can send text messages to other users",
+        "Messages are displayed in chronological order",
+        "Message history persists in the backend",
+        "Users can view their conversation history with other users",
+        "New messages appear without requiring page refresh"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useMessages.ts",
+          "operation": "create",
+          "description": "Create hooks for messaging including useGetMessages, useSendMessage, and useMarkMessageAsRead. Implement polling mechanism (not WebSocket) to periodically fetch new messages for real-time-like updates."
+        },
+        {
+          "path": "frontend/src/components/messages/MessagesPage.tsx",
+          "operation": "create",
+          "description": "Create messages page with conversation list showing recent chats with other users. Display unread message indicators and last message preview. Include search/filter for conversations."
+        },
+        {
+          "path": "frontend/src/components/messages/ConversationView.tsx",
+          "operation": "create",
+          "description": "Create conversation view component displaying message history with selected user in chronological order. Include message input field with send button. Messages auto-refresh via polling. Show sender profile photos and timestamps."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Create photo and video post sharing UI with caption and media upload",
+      "acceptanceCriteria": [
+        "Users can upload photos and videos from their device",
+        "Posts include caption text and timestamp",
+        "Posts are stored in the backend and associated with the user who created them",
+        "Users can view a feed of posts from all users"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/usePosts.ts",
+          "operation": "create",
+          "description": "Create hooks for post management including useGetPublicPosts, useCreatePost, useDeletePost. Use blob-storage component's ExternalBlob.fromBytes() for media uploads with upload progress tracking via withUploadProgress()."
+        },
+        {
+          "path": "frontend/src/components/posts/CreatePostModal.tsx",
+          "operation": "create",
+          "description": "Create post creation modal with file input for photos/videos (multiple), caption text area, and visibility selector (public/private). Use blob-storage component for media uploads. Display upload progress. Use frontend/public/assets/generated/camera-icon.dim_64x64.png for the camera icon."
+        },
+        {
+          "path": "frontend/src/components/posts/PostCard.tsx",
+          "operation": "create",
+          "description": "Create post card component displaying post media (using ExternalBlob.getDirectURL() for streaming/caching), caption, author username and profile photo, timestamp, like count, and comments. Include like button with frontend/public/assets/generated/heart-icon.dim_48x48.png icon and comment input section."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement ephemeral Stories UI that expires after 24 hours",
+      "acceptanceCriteria": [
+        "Users can create story posts with images and text",
+        "Stories are displayed separately from regular posts",
+        "Stories automatically expire and are removed 24 hours after creation",
+        "Users can view active stories from other users",
+        "Story timestamp shows time remaining before expiration"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useStories.ts",
+          "operation": "create",
+          "description": "Create hooks for story management including useGetUserStories and useCreateStory. Use blob-storage component's ExternalBlob.fromBytes() for story media uploads."
+        },
+        {
+          "path": "frontend/src/components/stories/StoriesBar.tsx",
+          "operation": "create",
+          "description": "Create horizontal stories bar component displaying circular profile photos of users with active stories. Clicking opens story viewer modal. Filter out expired stories (expiresAt < current timestamp) on the frontend."
+        },
+        {
+          "path": "frontend/src/components/stories/StoryViewerModal.tsx",
+          "operation": "create",
+          "description": "Create story viewer modal displaying story media (using ExternalBlob.getDirectURL()), author info, and time remaining until expiration. Include navigation controls for viewing multiple stories from same user."
+        },
+        {
+          "path": "frontend/src/components/stories/CreateStoryModal.tsx",
+          "operation": "create",
+          "description": "Create story creation modal with image/video upload and optional text overlay. Use blob-storage component for media uploads with progress tracking. Stories automatically expire 24 hours after creation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create content feed UI with infinite scroll displaying all posts in reverse chronological order",
+      "acceptanceCriteria": [
+        "Feed displays all user posts sorted by newest first",
+        "Posts show username, profile photo, caption, image/video, and timestamp",
+        "Infinite scroll loads more posts as user scrolls down",
+        "Feed updates when new posts are created"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/feed/FeedPage.tsx",
+          "operation": "create",
+          "description": "Create main feed page displaying posts in reverse chronological order using PostCard components. Implement infinite scroll using Intersection Observer API to load more posts as user scrolls. Include pull-to-refresh functionality for mobile. Display StoriesBar component at top of feed."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement like and comment UI on posts with interaction counts",
+      "acceptanceCriteria": [
+        "Users can like/unlike posts with a heart icon",
+        "Like count is displayed on each post",
+        "Users can add text comments to posts",
+        "Comments display with username and timestamp",
+        "All interactions persist in the backend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/usePostInteractions.ts",
+          "operation": "create",
+          "description": "Create hooks for post interactions including useLikePost, useUnlikePost, and useCommentOnPost. Handle optimistic updates for immediate UI feedback."
+        },
+        {
+          "path": "frontend/src/components/posts/CommentsList.tsx",
+          "operation": "create",
+          "description": "Create comments list component displaying all comments for a post with author usernames, profile photos, timestamps, and comment text. Include form for adding new comments."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create privacy controls UI for profile and post visibility settings",
+      "acceptanceCriteria": [
+        "Users have privacy settings in their profile (public/private)",
+        "Private profiles only show content to approved followers",
+        "Users can set individual post visibility settings",
+        "Privacy settings are enforced by backend queries"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/profile/PrivacySettingsSection.tsx",
+          "operation": "create",
+          "description": "Create privacy settings section in EditProfileModal allowing users to toggle profile visibility (public/private). Display explanation text about what each setting means for content visibility."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement follow/unfollow UI with followers and following lists",
+      "acceptanceCriteria": [
+        "Users can follow and unfollow other users",
+        "Follow relationships are stored in the backend",
+        "Users can view their followers and following lists",
+        "Follower and following counts are displayed on profiles"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useFollow.ts",
+          "operation": "create",
+          "description": "Create hooks for follow management including useFollowUser, useUnfollowUser, useGetFollowers, and useGetFollowing. Handle optimistic updates for follow/unfollow actions."
+        },
+        {
+          "path": "frontend/src/components/profile/FollowButton.tsx",
+          "operation": "create",
+          "description": "Create follow/unfollow button component displaying current follow state. Button disabled for current user's own profile. Style changes based on follow state (Follow/Following/Unfollow)."
+        },
+        {
+          "path": "frontend/src/components/profile/FollowersModal.tsx",
+          "operation": "create",
+          "description": "Create modal displaying list of followers with usernames and profile photos. Clicking a user navigates to their profile."
+        },
+        {
+          "path": "frontend/src/components/profile/FollowingModal.tsx",
+          "operation": "create",
+          "description": "Create modal displaying list of users being followed with usernames and profile photos. Clicking a user navigates to their profile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Create user search UI for finding users by username",
+      "acceptanceCriteria": [
+        "Users can search for other users by typing username",
+        "Search results display matching usernames with profile photos",
+        "Clicking a result navigates to that user's profile",
+        "Search is performed in the backend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useUserSearch.ts",
+          "operation": "create",
+          "description": "Create hook for user search using searchUsers backend method. Implement debouncing to avoid excessive backend calls while typing."
+        },
+        {
+          "path": "frontend/src/components/search/SearchPage.tsx",
+          "operation": "create",
+          "description": "Create search page with search input field and results list. Display user cards with profile photos (using ExternalBlob.getDirectURL() or frontend/public/assets/generated/avatar-placeholder.dim_128x128.png fallback), usernames, and bio snippets. Clicking navigates to user profile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Implement notification system UI for likes, comments, follows, and messages",
+      "acceptanceCriteria": [
+        "Notifications are generated for likes, comments, follows, and new messages",
+        "Users can view a list of all notifications",
+        "Unread notification count is displayed",
+        "Notifications can be marked as read",
+        "Notifications persist in the backend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useNotifications.ts",
+          "operation": "create",
+          "description": "Create hooks for notifications including useGetNotifications and useMarkNotificationAsRead. Implement polling to fetch new notifications periodically."
+        },
+        {
+          "path": "frontend/src/components/notifications/NotificationsPage.tsx",
+          "operation": "create",
+          "description": "Create notifications page displaying list of all notifications sorted by timestamp (newest first). Show unread badge for unread notifications. Clicking notification marks it as read and navigates to relevant content (post, profile, etc.)."
+        },
+        {
+          "path": "frontend/src/components/notifications/NotificationBadge.tsx",
+          "operation": "create",
+          "description": "Create notification badge component displaying unread notification count. Used in navigation bar. Shows red badge with count when unread notifications exist."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Create content reporting UI with reason categories for posts and users",
+      "acceptanceCriteria": [
+        "Users can report posts or profiles with a report button",
+        "Report form includes reason categories (spam, harassment, inappropriate content, etc.)",
+        "Reports are stored in the backend with reporter identity, target, and reason",
+        "Reported content is flagged for review"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useReports.ts",
+          "operation": "create",
+          "description": "Create hooks for reporting including useReportContent. Admin-only hook useGetReports for viewing all reports."
+        },
+        {
+          "path": "frontend/src/components/reports/ReportModal.tsx",
+          "operation": "create",
+          "description": "Create report modal with reason selection (dropdown or radio buttons) including categories: spam, harassment, inappropriate content, false information, other. Include optional text area for additional details. Submit button calls reportContent backend method."
+        },
+        {
+          "path": "frontend/src/components/admin/ReportsPage.tsx",
+          "operation": "create",
+          "description": "Create admin-only reports page displaying all submitted reports with reporter, reported content/user, reason, and timestamp. Only accessible to users with admin role. Use authorization component to check isCallerAdmin() before rendering."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Design modern mobile-first UI with coral-to-purple gradient theme and Instagram-inspired layout",
+      "acceptanceCriteria": [
+        "UI uses a coral-to-purple gradient color palette consistently",
+        "Components have rounded corners and subtle shadows for depth",
+        "Smooth transitions and animations enhance user interactions",
+        "Bottom navigation bar provides quick access to main features",
+        "Layout is responsive and mobile-optimized",
+        "Typography is clean and legible with proper hierarchy"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define custom CSS variables for coral-to-purple gradient color palette (--color-coral, --color-purple, gradient stops). Add base styles for rounded corners (border-radius utilities), subtle shadows (box-shadow utilities), and smooth transitions. Ensure mobile-first responsive typography with proper hierarchy."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom coral-to-purple gradient colors matching design requirement. Add custom border-radius values for rounded cards. Define custom box-shadow utilities for depth. Configure responsive breakpoints for mobile-first design."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create main layout component with bottom navigation bar for mobile (Home/Feed, Search, Messages, Notifications, Profile icons). Include header with app logo from frontend/public/assets/generated/logo.dim_256x256.png. Apply coral-to-purple gradient styling. Render children in main content area."
+        },
+        {
+          "path": "frontend/src/components/layout/BottomNavigation.tsx",
+          "operation": "create",
+          "description": "Create bottom navigation component with icons for main features: Feed (home), Search, Messages (using frontend/public/assets/generated/chat-icon.dim_48x48.png), Notifications (bell), Profile. Highlight active route. Fixed position at bottom on mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Wire generated images from frontend/public/assets/generated into UI as static assets",
+      "acceptanceCriteria": [
+        "Generated images are loaded from frontend/public/assets/generated",
+        "Images are displayed in appropriate locations (logo in header, placeholders, backgrounds)",
+        "Images maintain proper aspect ratios and responsive sizing",
+        "No backend calls are made to serve these static assets"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/HeroSection.tsx",
+          "operation": "create",
+          "description": "Create hero section component using frontend/public/assets/generated/hero-background.dim_1920x1080.png as background image. Display app title 'Yasa' with gradient text effect and tagline. Include call-to-action for login/signup. Only shown to unauthenticated users on landing page."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire all created components into routing structure. Define routes: / (landing with HeroSection for unauthenticated, FeedPage for authenticated wrapped in AuthGuard), /profile/:userId (ProfilePage wrapped in AuthGuard), /messages (MessagesPage wrapped in AuthGuard), /messages/:userId (ConversationView wrapped in AuthGuard), /search (SearchPage wrapped in AuthGuard), /notifications (NotificationsPage wrapped in AuthGuard), /admin/reports (ReportsPage wrapped in AuthGuard with admin check). Wrap authenticated routes with AppLayout for consistent navigation. Show ProfileSetupModal when needed using the pattern: isAuthenticated && !profileLoading && isFetched && userProfile === null."
+        }
+      ]
+    }
+  ]
+}
